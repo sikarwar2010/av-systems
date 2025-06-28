@@ -1,15 +1,15 @@
-import DashboardLayoutPage from "@/components/layouts/dashboardlayout";
+import SalesLayout from "@/components/layouts/ui/Saleslayout";
 
-export default function SalesLayout({
+export default function SalesDashboardLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
         <div>
-            <DashboardLayoutPage>
+            <SalesLayout>
                 {children}
-            </DashboardLayoutPage>
+            </SalesLayout>
         </div>
     );
 }

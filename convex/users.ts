@@ -17,11 +17,17 @@ export const createUser = mutation({
 
         if (existingUser) return;
 
+        // Insert the new user into the database
+        const now = Date.now();
+
         await ctx.db.insert("users", {
             clerkUserId: args.clerkUserId,
+            avatar: args.avatar,
             email: args.email,
             name: args.name,
             role: args.role,
+            createdAt: now,
+            updatedAt: now
         });
     },
 });
@@ -43,6 +49,7 @@ export const updateUser = mutation({
         await ctx.db.patch(user._id, {
             email: args.email,
             name: args.name,
+            updatedAt: Date.now(),
         });
     },
 });
@@ -91,6 +98,9 @@ export const updateUserRole = mutation({
 
         if (!user) throw new Error("User not found");
 
-        await ctx.db.patch(user._id, { role: args.role });
+        await ctx.db.patch(user._id, { 
+            role: args.role,
+            updatedAt: Date.now(),
+        });
     },
 });
