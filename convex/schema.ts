@@ -30,7 +30,7 @@ export default defineSchema({
         status: v.union(v.literal("Active"), v.literal("Inactive")),
         createdAt: v.number(),
         updatedAt: v.number(),
-    }).index("by_customer_id", ["customerId"]),
+    }).index("by_customer_id", ["customerId"]).searchIndex("search_name", { searchField: "customerName" }),
 
     customerLocations: defineTable({
         customerId: v.id("customers"),
